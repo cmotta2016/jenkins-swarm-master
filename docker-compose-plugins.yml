@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  jenkins:
+    image: jenkins/jenkins:2.164.2
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /root/jenkins-master/plugins.txt:/usr/share/jenkins/ref/plugins.txt
+      - /root/jenkins-master/security.groovy:/usr/share/jenkins/ref/init.groovy.d/security.groovy
+    ports:
+      - 8080:8080
+      - 50000:50000
+    networks:
+      - jenkins
+
+volumes:
+  jenkins_home:
+
+networks:
+  jenkins:
